@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-pub const BACKGROUND_COLOR: Color = Color::rgba(0.25, 0.25, 0.25, 0.5);
+use crate::bundles::BACKGROUND_COLOR;
 
 pub const HUB_STYLE: Style = Style {
     display: Display::Flex,

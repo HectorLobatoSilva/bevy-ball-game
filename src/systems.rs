@@ -15,14 +15,12 @@ pub fn spawn_camera(mut commands: Commands, window_query: Query<&Window, With<Pr
 }
 
 pub fn transition_to_game_state(
-    // mut commands: Commands,
     keyboart_input: Res<Input<KeyCode>>,
     app_state: Res<State<AppState>>,
     mut next_app_state: ResMut<NextState<AppState>>,
 ) {
     if keyboart_input.just_pressed(KeyCode::G) {
         if app_state.0 != AppState::Game {
-            // commands.insert_resource(NextState(Some(AppState::Game)));
             next_app_state.set(AppState::Game);
             println!("State Game");
         }
@@ -30,7 +28,6 @@ pub fn transition_to_game_state(
 }
 
 pub fn transition_to_main_menu_state(
-    // mut commands: Commands,
     keyboart_input: Res<Input<KeyCode>>,
     app_state: Res<State<AppState>>,
     mut next_app_state: ResMut<NextState<AppState>>,
@@ -38,8 +35,6 @@ pub fn transition_to_main_menu_state(
 ) {
     if keyboart_input.just_pressed(KeyCode::M) {
         if app_state.0 != AppState::MainMenu {
-            // commands.insert_resource(NextState(Some(AppState::MainMenu)));
-            // commands.insert_resource(NextState(Some(SimulationState::Paused)));
             next_app_state.set(AppState::MainMenu);
             next_simulation_state.set(SimulationState::Paused);
             println!("State MainMenu");

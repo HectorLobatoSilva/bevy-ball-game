@@ -1,10 +1,10 @@
 use bevy::prelude::*;
 
 use crate::{
-    bundles::{button_bundle, text_bundle},
+    bundles::{button_bundle, text_bundle, BACKGROUND_COLOR, NORMAL_BUTTON_COLOR},
     game::ui::pause_menu::{
         components::{MainMenuButton, PauseMenu, QuitButton, ResumeButton},
-        styles::{BACKGROUND_COLOR, NORMAL_BUTTON, PAUSE_MENU_CONTAINER_STYLE, PAUSE_MENU_STYLE},
+        styles::{PAUSE_MENU_CONTAINER_STYLE, PAUSE_MENU_STYLE},
     },
 };
 
@@ -38,20 +38,28 @@ pub fn build_pause_menu(commands: &mut Commands, asset_server: &Res<AssetServer>
                     ..default()
                 })
                 .with_children(|parent| {
-                    // Title
                     parent.spawn(text_bundle("Pause Menu", &asset_server, 64.0));
                     parent
-                        .spawn((button_bundle(200.0, 80.0, NORMAL_BUTTON), ResumeButton {}))
+                        .spawn((
+                            button_bundle(200.0, 80.0, NORMAL_BUTTON_COLOR),
+                            ResumeButton {},
+                        ))
                         .with_children(|parent| {
                             parent.spawn(text_bundle("Resume", &asset_server, 32.0));
                         });
                     parent
-                        .spawn((button_bundle(200.0, 80.0, NORMAL_BUTTON), MainMenuButton {}))
+                        .spawn((
+                            button_bundle(200.0, 80.0, NORMAL_BUTTON_COLOR),
+                            MainMenuButton {},
+                        ))
                         .with_children(|parent| {
                             parent.spawn(text_bundle("Main Menu", &asset_server, 32.0));
                         });
                     parent
-                        .spawn((button_bundle(200.0, 80.0, NORMAL_BUTTON), QuitButton {}))
+                        .spawn((
+                            button_bundle(200.0, 80.0, NORMAL_BUTTON_COLOR),
+                            QuitButton {},
+                        ))
                         .with_children(|parent| {
                             parent.spawn(text_bundle("Quit", &asset_server, 32.0));
                         });

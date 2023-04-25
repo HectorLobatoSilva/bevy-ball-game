@@ -1,10 +1,10 @@
 use bevy::prelude::*;
 
 use crate::{
-    bundles::{button_bundle, text_bundle},
+    bundles::{button_bundle, text_bundle, NORMAL_BUTTON_COLOR},
     main_menu::{
         components::{MainMenu, PlayButton, QuitButton},
-        styles::{MAIN_MENU_IMAGE_STYLE, NORMAL_BUTTON_COLOR, TITLE_STYLE},
+        styles::{MAIN_MENU_IMAGE_STYLE, TITLE_STYLE},
     },
 };
 
@@ -30,13 +30,11 @@ pub fn build_main_menu(commands: &mut Commands, asset_server: &Res<AssetServer>)
                     gap: Size::new(Val::Px(8.0), Val::Px(8.0)),
                     ..default()
                 },
-                // background_color: Color::RED.into(),
                 ..default()
             },
             MainMenu {},
         ))
         .with_children(|parent| {
-            // Title
             parent
                 .spawn(NodeBundle {
                     style: TITLE_STYLE,
@@ -55,7 +53,6 @@ pub fn build_main_menu(commands: &mut Commands, asset_server: &Res<AssetServer>)
                         ..default()
                     });
                 });
-            // Play button
             parent
                 .spawn((
                     button_bundle(200.0, 80.0, NORMAL_BUTTON_COLOR),
@@ -64,7 +61,6 @@ pub fn build_main_menu(commands: &mut Commands, asset_server: &Res<AssetServer>)
                 .with_children(|parent| {
                     parent.spawn(text_bundle("Play", &asset_server, 32.0));
                 });
-            // Quit button
             parent
                 .spawn((
                     button_bundle(200.0, 80.0, NORMAL_BUTTON_COLOR),
